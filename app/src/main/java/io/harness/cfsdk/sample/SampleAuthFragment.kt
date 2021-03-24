@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import io.harness.cfsdk.*
+import io.harness.cfsdk.cloud.core.model.Evaluation
+import io.harness.cfsdk.cloud.model.Target
+import io.harness.cfsdk.cloud.oksse.EventsListener
+import io.harness.cfsdk.cloud.oksse.model.StatusEvent
 
 class SampleAuthFragment : Fragment() {
 
@@ -48,10 +52,10 @@ class SampleAuthFragment : Fragment() {
         val remoteConfiguration = CfConfiguration.builder()
             .enableStream(true)
             .pollingInterval(10)
-            .target(account.accountName)
             .build()
 
-        CfClient.getInstance().initialize(context, Constants.CF_SDK_API_KEY, remoteConfiguration) {
+        CfClient.getInstance().initialize(context, Constants.CF_SDK_API_KEY, remoteConfiguration,
+            Target().identifier(account.accountName)) {
             Handler(Looper.getMainLooper()).post {
                 fragmentManager?.beginTransaction()
                     ?.replace(R.id.main_fragment_holder, FeaturesFragment.newInstance())
