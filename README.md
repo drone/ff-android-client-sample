@@ -12,7 +12,7 @@ buildscript {
 ```
 
 In app `build.gradle` file add dependency for Harness's SDK
-`implementation 'io.harness:ff-android-client-sdk:0.0.2'`
+`implementation 'io.harness:ff-android-client-sdk:0.0.4'`
 
 
 ### Accounts used:
